@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Sugar Mommas</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,225 +11,228 @@
 	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 
 </head>
+
 <body>
-<div class="row">
-	<header id="masthead">
-				<div class="logo col-xs-4 col-xs-offset-4 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 text-center">
-					<!--<img src="assets/images/sugarmamaslogo.png" alt="Sugar Mamas">-->
-					<a href="index.html">
+	<div class="row">
+		<header id="masthead">
+			<div class="logo col-xs-4 col-xs-offset-4 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 text-center">
+				<!--<img src="assets/images/sugarmamaslogo.png" alt="Sugar Mamas">-->
+				<a href="index.html">
 						<img src="assets/images/logoopacityzero.png" alt="Sugar Mamas">
 					</a>
-					<div class="row">
-						<div class="centerIcons col-xs-12 text-center">
-							<nav>
-				        		<a href="https://twitter.com/sugarmamasapp" target="_blank">
+				<div class="row">
+					<div class="centerIcons col-xs-12 text-center">
+						<nav>
+							<a href="https://twitter.com/sugarmamasapp" target="_blank">
 				        			<img src="assets/images/twitter64.png" alt="twitter">
 				        		</a>
-				        		<a href="https://facebook.com/sugarmamasapp" target="_blank">
-				        			<img src="assets/images/facebook66.png" alt="facebook">	
+							<a href="https://facebook.com/sugarmamasapp" target="_blank">
+				        			<img src="assets/images/facebook66.png" alt="facebook">
 				        		</a>
-				        		<!-- <a href="https://instagram.com" target="_blank">
-				        			<img src="assets/images/instagram64.png" alt="facebook">	
+							<!-- <a href="https://instagram.com" target="_blank">
+				        			<img src="assets/images/instagram64.png" alt="facebook">
 				        		</a> -->
-			      			</nav>
+						</nav>
 
-						</div>
-					</div>	
-
+					</div>
 				</div>
-		    	<div class="smIcons col-xs-4 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-2 col-lg-offset-2 text-center">
 
-			      		<nav>
-			        		<a href="https://twitter.com/sugarmamasapp" target="_blank">
+			</div>
+			<div class="smIcons col-xs-4 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-2 col-lg-offset-2 text-center">
+
+				<nav>
+					<a href="https://twitter.com/sugarmamasapp" target="_blank">
 			        			<img src="assets/images/twitter64.png" alt="twitter">
 			        		</a>
-			        		<a href="https://facebook.com/sugarmamasapp" target="_blank">
-			        			<img src="assets/images/facebook66.png" alt="facebook">	
+					<a href="https://facebook.com/sugarmamasapp" target="_blank">
+			        			<img src="assets/images/facebook66.png" alt="facebook">
 			        		</a>
-			        		<!-- <a href="https://instagram.com" target="_blank">
-			        			<img src="assets/images/instagram64.png" alt="facebook">	
+					<!-- <a href="https://instagram.com" target="_blank">
+			        			<img src="assets/images/instagram64.png" alt="facebook">
 			        		</a> -->
-			      		</nav>
-		    	</div>
-	</header>
-</div>	
-<!--
+				</nav>
+			</div>
+		</header>
+	</div>
+	<!--
 <div class="row">
 	<div class="sloganBox col-xs-4 col-xs-offset-4 col-sm-4 col-sm-offset-4 col-md-6 col-md-offset-3">
 		<h1>Sugar vs. Human. Helping you win.</h1>
 	</div>
-</div>	
+</div>
 -->
 
-<div class="row">
-	<div class="sloganBox col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2">
-		<h1><strong>"Listen To Your Mama"</strong></h1>
+	<div class="row">
+		<div class="sloganBox col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2">
+			<h1><strong>"Listen To Your Mama"</strong></h1>
+		</div>
 	</div>
-</div>
 
-<div class="form">
-      
-      <ul class="tab-group">
-        <li class="tab active"><a class="signUp" href="#signupBox">Sign Up</a></li>
-        <li class="tab"><a class="login" href="#loginBox">Log In</a></li>
-      </ul>
-      
-      <div class="tab-content">
-        <div id="signupBox">
-          <div id="signupBasic">   
-          	<h1>Signing up is quick and easy &#9787;</h1>
-	         
-	          
-	          <div class="top-row">
-	            <div class="field-wrap">
-	              <label>
+	<div class="form">
+
+		<ul class="tab-group">
+			<li class="tab active"><a class="signUp" href="#signupBox">Sign Up</a></li>
+			<li class="tab"><a class="login" href="#loginBox">Log In</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="signupBox">
+				<div id="signupBasic">
+					<h1>Signing up is quick and easy &#9787;</h1>
+
+
+					<div class="top-row">
+						<div class="field-wrap">
+							<label>
 	                First Name<span class="req">*</span>
 	              </label>
-	              <input type="text" required autocomplete="off" id="signupFn"/>
-	            </div>
-	        
-	            <div class="field-wrap">
-	              <label>
+							<input type="text" required autocomplete="off" id="signupFn" />
+						</div>
+
+						<div class="field-wrap">
+							<label>
 	                Last Name<span class="req">*</span>
 	              </label>
-	              <input type="text"required autocomplete="off" id="signupLn"/>
-	            </div>
-	          </div>
+							<input type="text" required autocomplete="off" id="signupLn" />
+						</div>
+					</div>
 
-	          <div class="field-wrap">
-	            <label>
+					<div class="field-wrap">
+						<label>
 	              Zipcode<span class="req">*</span>
 	            </label>
-	            <input type="text"required autocomplete="off" id="signupZipcode"/>
-	          </div>
+						<input type="text" required autocomplete="off" id="signupZipcode" />
+					</div>
 
-	          <!-- <div class="field-wrap">
+					<!-- <div class="field-wrap">
 	            <label>
 	              Phone Number ex. (123)-456-7890 <span class="req">*</span>
 	            </label>
 	            <input type="tel"required autocomplete="off" id="signupPhone"/>
 	          </div> -->
 
-	          <div class="field-wrap">
-	            <label>
+					<div class="field-wrap">
+						<label>
 	              Email Address<span class="req">*</span>
 	            </label>
-	            <input type="email"required autocomplete="off" id="signupEmail"/>
-	          </div>
-	      </div>  
+						<input type="email" required autocomplete="off" id="signupEmail" />
+					</div>
+				</div>
 
-		  <h2>Are you a diabetic?</h2>
+				<h2>Are you a diabetic?</h2>
 
-          <ul class="tab-group" id="signupDiabetic">
-        	<li class="tab active"><a class="noDiabetic" href="#signupBasic">No</a></li>
-        	<li class="tab"><a class="yesDiabetic" href="#isrIbr">Yes</a></li>
-      	  </ul>
+				<ul class="tab-group" id="signupDiabetic">
+					<li class="tab active"><a class="noDiabetic" href="#signupBasic">No</a></li>
+					<li class="tab"><a class="yesDiabetic" href="#isrIbr">Yes</a></li>
+				</ul>
 
-      	  <br>
-		  
-		  <div id="isrIbr">		
-		      <div class="field-wrap">
-		            <label>
+				<br>
+
+				<div id="isrIbr">
+					<div class="field-wrap">
+						<label>
 		              Insulin to Sugar Ratio<span class="req">*</span>
 		            </label>
-		            <input type="number"required autocomplete="off" id="signupIsr"/>
-		      </div>
+						<input type="number" required autocomplete="off" id="signupIsr" />
+					</div>
 
-		      <div class="field-wrap">
-		            <label>
+					<div class="field-wrap">
+						<label>
 		              Insulin to Blood Sugar Ratio<span class="req">*</span>
 		            </label>
-		            <input type="number"required autocomplete="off" id="signupIbr"/>
-		      </div>
-		  </div>    
+						<input type="number" required autocomplete="off" id="signupIbr" />
+					</div>
+				</div>
 
-          <!-- <div class="field-wrap">
+				<!-- <div class="field-wrap">
             <label>
               Username<span class="req">*</span>
             </label>
             <input type="text"required autocomplete="off" id="signupUsername"/>
           </div> -->
-          
-          <div class="field-wrap">
-            <label>
+
+				<div class="field-wrap">
+					<label>
               Set A Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off" id="signupPassword"/>
-          </div>
-          
-          <button class="button button-block" id="signupSubmit"/>Get Started</button>
-          
-          
+					<input type="password" required autocomplete="off" id="signupPassword" />
+				</div>
 
-        </div>
-        
-        <div id="loginBox">   
-          <h1>Welcome Back!</h1>
-          
-          
-          
-          <div class="field-wrap">
-            <label>
+				<button class="button button-block" id="signupSubmit" />Get Started</button>
+
+
+
+			</div>
+
+			<div id="loginBox">
+				<h1>Welcome Back!</h1>
+
+
+
+				<div class="field-wrap">
+					<label>
               Email Address/Username<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off" id="loginUser"/>
-          </div>
-          
-          <div class="field-wrap">
-            <label>
+					<input type="email" required autocomplete="off" id="loginUser" />
+				</div>
+
+				<div class="field-wrap">
+					<label>
               Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off" id="loginPassword"/>
-          </div>
-          
-          <p class="forgot" id="forgotPassword"><a href="#">Forgot Password?</a></p>
-          
-          <button class="button button-block" id="loginSubmit"/>Log In</button>
-          
-          
+					<input type="password" required autocomplete="off" id="loginPassword" />
+				</div>
 
-        </div>
-        
-      </div><!-- tab-content -->
+				<p class="forgot" id="forgotPassword"><a href="#">Forgot Password?</a></p>
 
-      <!-- Keeping searchBox outside of the "tab-content" section; we want it to be a separate container and have it hide or display independently. -->
-    <div id="searchBox">
-        <h2>Choose your food!</h2>
-        <br>
-        <div class="field-wrap">
-            <label>
+				<button class="button button-block" id="loginSubmit" />Log In</button>
+
+
+
+			</div>
+
+		</div>
+		<!-- tab-content -->
+
+		<!-- Keeping searchBox outside of the "tab-content" section; we want it to be a separate container and have it hide or display independently. -->
+		<div id="searchBox">
+			<h2>Choose your food!</h2>
+			<br>
+			<div class="field-wrap">
+				<label>
             Type in your food here!<span class="req">*</span>
             </label>
-            <input type="text"required id="searchInput" autocomplete="off"/>
-            <br><br>
-            <button class="button button-block" id="searchSubmit"/>Search!</button>
-            <br>
-            <button class="button button-block" id="logoutNow"/>Log Out</button>
-        </div>
-    </div>
+				<input type="text" required id="searchInput" autocomplete="off" />
+				<br><br>
+				<button class="button button-block" id="searchSubmit" />Search!</button>
+				<br>
+				<button class="button button-block" id="logoutNow" />Log Out</button>
+			</div>
+		</div>
 
-    <div id="resultsBox">
-        <h2>Select the most relevant option from the choices below:</h2>
-        <div class="field-wrap" id="resultsOptions">
-        <!--Thee buttons dyanmically generated by the first API call from our search will be placed here-->
-            <br>
-            <button class="button button-block" id="logoutNow"/>Log Out</button>
-        </div>
-    </div>
+		<div id="resultsBox">
+			<h2>Select the most relevant option from the choices below:</h2>
+			<div class="field-wrap" id="resultsOptions">
+				<!--Thee buttons dyanmically generated by the first API call from our search will be placed here-->
+				<br>
+				<button class="button button-block" id="logoutNow" />Log Out</button>
+			</div>
+		</div>
 
-    <div id="finalBox">
-    	<div id="outputBox"></div>
-    	<div id="searchagainBox">
-    		<button class = "button button-block" id="searchAgain"> Search Again </button>
-        <br>
-    		<button class = "button button-block" id="historySubmit"> Add to History </button>
-        <br>
-        <button class="button button-block" id="logoutNoww"/>Log Out</button>
-    	</div>
-    </div>
-      
-</div> <!-- /form -->
-<!--
+		<div id="finalBox">
+			<div id="outputBox"></div>
+			<div id="searchagainBox">
+				<button class="button button-block" id="searchAgain"> Search Again </button>
+				<br>
+				<button class="button button-block" id="historySubmit"> Add to History </button>
+				<br>
+				<button class="button button-block" id="logoutNoww" />Log Out</button>
+			</div>
+		</div>
+
+	</div>
+	<!-- /form -->
+	<!--
 <footer>
     	<img src="assets/images/logoopacity55.png" alt="Sugar Mamas2">
     	<br>
@@ -238,32 +242,32 @@
 </footer>
 -->
 
-<footer>
-    	<img src="assets/images/logoopacityzero.png" alt="Sugar Mamas2">
-    	<br>
-    	<div class="container">
-      		Copyright &copy; 2017 Sugar Mamas
-    	</div>
-</footer>
+	<footer>
+		<img src="assets/images/logoopacityzero.png" alt="Sugar Mamas2">
+		<br>
+		<div class="container">
+			Copyright &copy; 2017 Sugar Mamas
+		</div>
+	</footer>
 
-<!-- Trigger the modal with a button -->
-<!--
+	<!-- Trigger the modal with a button -->
+	<!--
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 -->
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-      <!--
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<!--
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       -->
-        <h4 class="modal-title"></h4>
-      </div>
-      <!--
+					<h4 class="modal-title"></h4>
+				</div>
+				<!--
       <div class="modal-body">
         <p>Some text in the modal.</p>
       </div>
@@ -272,15 +276,16 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
       -->
-    </div>
+			</div>
 
-  </div>
-</div>
--->
-<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="assets/javascript/logic.js"></script>
-<script src="assets/javascript/frontLogic.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</script>
+		</div>
+	</div>
+	-->
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="assets/javascript/logic.js"></script>
+	<script src="assets/javascript/frontLogic.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</script>
 </body>
+
 </html>

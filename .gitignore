@@ -1,0 +1,4 @@
+#gitIgnore
+node_modules
+*~
+credentials.js
