@@ -1,31 +1,45 @@
 //package requirements
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const exphbs = require('express-handlebars');
+const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const mongo = require('mongodb');
+const mongoose = require('mongoose');
 
 //init app
-var app = express();
+const app = express();
+
+//init mongodb
+mongoose.connect('mongod://localhost/sugarmamas');
+
+//open db connection
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+
+});
 
 //kill header for privacy
 app.disable('x-powered-by');
 
 //view engine
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+const handlebars = require('express-handlebars').create({
+  defaultLayout: 'main'
+});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 //bodyparsing
 app.use(bodyParser.json());
-app.use(require('body-parser').urlencoded({extended: false}));
+app.use(require('body-parser').urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 //static/public folder
@@ -33,9 +47,9 @@ app.use(express.static(__dirname + '/public'));
 
 // Express Session
 app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
 }));
 
 // Passport init
@@ -45,17 +59,17 @@ app.use(passport.session());
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
+    var namespace = param.split('.'),
+      root = namespace.shift(),
+      formParam = root;
 
-    while(namespace.length) {
+    while (namespace.length) {
       formParam += '[' + namespace.shift() + ']';
     }
     return {
-      param : formParam,
-      msg   : msg,
-      value : value
+      param: formParam,
+      msg: msg,
+      value: value
     };
   }
 }));
@@ -64,7 +78,7 @@ app.use(expressValidator({
 app.use(flash());
 
 // Global Vars
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -81,13 +95,39 @@ app.get('/oldHome', function(req, res) {
   res.render('oldHome');
 })
 
+app.post('/register', function(req, res) {
+  if (req.body.username &&
+    req.body.email &&
+    req.body.zipCode &&
+    req.body.password &&
+    req.body.confirmPassword &&
+    (req.body.password == req.body.confirmPassword)) {
+    var userData = {
+      username: req.body.username,
+      email: req.body.email,
+      zipCode: req.body.zipCode,
+      password: req.body.password,
+      passwordConf: req.body.passwordConf,
+    }
+
+    User.create(userData, function(err, user) {
+      if (err) {
+        return next(err)
+      } else {
+        return res.redirect('/dashboard');
+      }
+    });
+
+  }
+})
+
 app.use(function(req, res) {
   res.type('text/html');
   res.status(404);
   res.render('404');
 });
 
-app.use(function(err, req, res, next){
+app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500);
   res.render('500');

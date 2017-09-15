@@ -17,13 +17,13 @@ $(function() {
 	});
 });
 
-$('#register-submit').on('click', function() {
-  var registerData = {};
-  registerData.username = $('#registerUsername').val();
-  registerData.email = $('#email').val();
-  registerData.zipCode = $('#zipCode').val();
-  registerData.password = $('#registerPassword').val();
-  registerData.confirmPassword = $('#confirm-password').val();
-
-  console.log(registerData);
-})
+// $('#register-submit').on('click', function() {
+//   var registerData = {};
+//   registerData.username = $('#registerUsername').val();
+//   registerData.email = $('#email').val();
+//   registerData.zipCode = $('#zipCode').val();
+//   registerData.password = $('#registerPassword').val();
+//   registerData.confirmPassword = $('#confirm-password').val();
+//
+//   console.log(registerData);
+// })
