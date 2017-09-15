@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,18 @@
   "homepage": "https://github.com/sjirjis/sugarMamas#readme",
   "dependencies": {
     "body-parser": "^1.18.1",
+    "bcryptjs": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
     "express": "^4.15.4",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
   }
 }
