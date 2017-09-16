@@ -4,14 +4,15 @@ const expressValidator = require('express-validator');
 
 module.exports = function(app) {
 
-  // const expressValidator = require('express-validator');
-  app.use(expressValidator());
 
   //bodyparsing
   app.use(bodyParser.json());
   app.use(require('body-parser').urlencoded({
     extended: false
   }));
+
+  //init validator
+  app.use(expressValidator());
 
   app.get('/', function(req, res) {
     res.render('home');
@@ -21,7 +22,11 @@ module.exports = function(app) {
     res.render('oldHome');
   });
 
-  app.post('/register', function(req, res) {
+  app.get('/login', function (req, res) {
+    res.render('homeTemp');
+  });
+
+  app.post('/', function(req, res) {
     //for development only @todo remove for production
                   User.remove({}, function() {});
 
@@ -37,19 +42,15 @@ module.exports = function(app) {
   	req.checkBody('username', 'Username is required').notEmpty();
   	req.checkBody('email', 'Email is required').notEmpty();
   	req.checkBody('email', 'Email is not valid').isEmail();
-  	req.checkBody('username', 'Username is required').notEmpty();
+  	req.checkBody('zipCode', 'Zip Code is required').notEmpty();
   	req.checkBody('password', 'Password is required').notEmpty();
   	req.checkBody('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
     var errors = req.validationErrors();
-
     if (errors) {
-      res.render('/', {
-        errors: errors
-      });
+      res.render('home', { errors: errors });
+      return;
     } else {
-      console.log('all good');
-
       //create new user document using User model & userData
       var newUser = new User(userData);
 
