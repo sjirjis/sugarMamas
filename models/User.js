@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var UserSchema = new mongoose.Scheme({
+
+var UserSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: true,
@@ -14,8 +15,7 @@ var UserSchema = new mongoose.Scheme({
   },
   zipCode: {
     type: Number,
-    min: 5,
-    max: 5,
+    maxlength: 5,
     required: true,
     trim: true
   },

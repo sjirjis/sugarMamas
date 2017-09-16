@@ -2,28 +2,23 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const mongo = require('mongodb');
 const mongoose = require('mongoose');
+const dbConfig = require('./config/dbConfig');
 
 //init app
 const app = express();
 
 //init mongodb
-mongoose.connect('mongod://localhost/sugarmamas');
+mongoose.connect(dbConfig.URL);
 
-//open db connection
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-
-});
+//get routes
+require('./routes/routes.js')(app);
 
 //kill header for privacy
 app.disable('x-powered-by');
@@ -35,11 +30,6 @@ const handlebars = require('express-handlebars').create({
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-//bodyparsing
-app.use(bodyParser.json());
-app.use(require('body-parser').urlencoded({
-  extended: false
-}));
 app.use(cookieParser());
 
 //static/public folder
@@ -86,52 +76,17 @@ app.use(function(req, res, next) {
   next();
 });
 
-//routes
-app.get('/', function(req, res) {
-  res.render('home');
-});
-
-app.get('/oldHome', function(req, res) {
-  res.render('oldHome');
-})
-
-app.post('/register', function(req, res) {
-  if (req.body.username &&
-    req.body.email &&
-    req.body.zipCode &&
-    req.body.password &&
-    req.body.confirmPassword &&
-    (req.body.password == req.body.confirmPassword)) {
-    var userData = {
-      username: req.body.username,
-      email: req.body.email,
-      zipCode: req.body.zipCode,
-      password: req.body.password,
-      passwordConf: req.body.passwordConf,
-    }
-
-    User.create(userData, function(err, user) {
-      if (err) {
-        return next(err)
-      } else {
-        return res.redirect('/dashboard');
-      }
-    });
-
-  }
-})
-
-app.use(function(req, res) {
-  res.type('text/html');
-  res.status(404);
-  res.render('404');
-});
-
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.status(500);
-  res.render('500');
-})
+// app.use(function(req, res) {
+//   res.type('text/html');
+//   res.status(404);
+//   res.render('404');
+// });
+//
+// app.use(function(err, req, res, next) {
+//   console.error(err.stack);
+//   res.status(500);
+//   res.render('500');
+// });
 
 //server connection
 const PORT = 4000;
