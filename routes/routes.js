@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const User = require('../models/User.js');
 const expressValidator = require('express-validator');
-const bcrypt = require('bcryptjs');
+var bcrypt = require('bcryptjs');
 
 module.exports = function(app) {
 
@@ -52,15 +52,16 @@ module.exports = function(app) {
       });
       return;
     } else {
-      const saltRounds = 10;
 
-      bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(req.body.password, salt, function(err, hash) {
+      // bcrypt.genSalt(saltRounds, function(err, salt) {
+      //   bcrypt.hash(req.body.password, salt, function(err, hash) {
+      // const saltRounds = 10;
+
 
           var userData = {
             email: req.body.email,
             zipCode: req.body.zipCode,
-            password: hash
+            password: req.body.password
           };
 
           //create new user document using User model & userData
@@ -76,8 +77,8 @@ module.exports = function(app) {
               res.redirect('/dashboard');
             }
           });
-        });
-      });
+      //   });
+      // });
     };
   });
 
