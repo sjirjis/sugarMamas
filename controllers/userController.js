@@ -20,7 +20,7 @@ module.exports = function(app) {
 
     var loginErrors = req.validationErrors();
     if (loginErrors) {
-      res.render('home', {
+      res.render('user', {
         loginErrors: loginErrors
       });
       return;
@@ -42,7 +42,7 @@ module.exports = function(app) {
 
     var registrationErrors = req.validationErrors();
     if (registrationErrors) {
-      res.render('home', {
+      res.render('user', {
         registrationErrors: registrationErrors
       });
       return;
