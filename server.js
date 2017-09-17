@@ -20,7 +20,7 @@ mongoose.connect(dbConfig.URL);
 
 //get routes & controllers
 require('./routes/routes.js')(app);
-require('./controllers/userController.js')(app);
+require('./controllers/UserController.js')(app);
 
 //kill header for privacy
 app.disable('x-powered-by');
