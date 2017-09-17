@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 
 module.exports = function(app) {
 
-
   //bodyparsing
   app.use(bodyParser.json());
   app.use(require('body-parser').urlencoded({
@@ -19,30 +18,38 @@ module.exports = function(app) {
     res.render('home');
   });
 
-  app.get('/oldHome', function(req, res) {
-    res.render('oldHome');
-  });
+  app.post('/login', function(req, res) {
+    req.checkBody('email', 'Email is required').notEmpty();
+    req.checkBody('email', 'Email is not valid').isEmail();
+    req.checkBody('password', 'Password is required').notEmpty();
 
-  app.get('/login', function (req, res) {
-    res.render('homeTemp');
+    var loginErrors = req.validationErrors();
+    if (loginErrors) {
+      res.render('home', {
+        loginErrors: loginErrors
+      });
+      return;
+    }// else {
+
   });
 
   app.post('/register', function(req, res) {
     //for development only @todo remove for production
-                  User.remove({}, function() {});
-
+    User.remove({}, function() {});
 
     // Validation
-  	req.checkBody('username', 'Username is required').notEmpty();
-  	req.checkBody('email', 'Email is required').notEmpty();
-  	req.checkBody('email', 'Email is not valid').isEmail();
-  	req.checkBody('zipCode', 'Zip Code is required').notEmpty();
-  	req.checkBody('password', 'Password is required').notEmpty();
-  	req.checkBody('confirmPassword', 'Passwords do not match').equals(req.body.password);
+    //req.checkBody looks and name attr of Input element
+    req.checkBody('email', 'Email is required').notEmpty();
+    req.checkBody('email', 'Email is not valid').isEmail();
+    req.checkBody('zipCode', 'Zip Code is required').notEmpty();
+    req.checkBody('password', 'Password is required').notEmpty();
+    req.checkBody('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();
-    if (errors) {
-      res.render('home', { errors: errors });
+    var registrationErrors = req.validationErrors();
+    if (registrationErrors) {
+      res.render('home', {
+        registrationErrors: registrationErrors
+      });
       return;
     } else {
       const saltRounds = 10;
@@ -51,7 +58,6 @@ module.exports = function(app) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
 
           var userData = {
-            username: req.body.username,
             email: req.body.email,
             zipCode: req.body.zipCode,
             password: hash
@@ -61,16 +67,22 @@ module.exports = function(app) {
           var newUser = new User(userData);
 
           //store newUser document into the db
-          newUser.save(function (err, newUser) {
+          newUser.save(function(err, newUser) {
             if (err) {
-              return res.render('500', {error: err});
+              return res.render('500', {
+                error: err
+              });
             } else {
-              res.send('yay!');
+              res.redirect('/dashboard');
             }
           });
         });
       });
     };
+  });
+
+  app.get('/dashboard', function(req, res) {
+    res.render('dashboard');
   });
 
   //@todo breaks references to  assets
@@ -85,4 +97,4 @@ module.exports = function(app) {
     res.status(500);
     res.render('500');
   });
-}
+};

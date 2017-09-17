@@ -5,6 +5,7 @@ $(document).ready(function() {
     $('#register-form-link').removeClass('active');
     $(this).addClass('active');
     $('.alert-register').hide();
+    $('.login-register').show();
     e.preventDefault();
   });
 
@@ -14,6 +15,7 @@ $(document).ready(function() {
     $('#login-form-link').removeClass('active');
     $(this).addClass('active');
     $('.alert-register').show();
+    $('.login-register').hide();
     e.preventDefault();
   });
 
