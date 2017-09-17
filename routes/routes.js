@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const User = require('../models/User.js');
 const expressValidator = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 module.exports = function(app) {
 
@@ -26,17 +27,10 @@ module.exports = function(app) {
     res.render('homeTemp');
   });
 
-  app.post('/', function(req, res) {
+  app.post('/register', function(req, res) {
     //for development only @todo remove for production
                   User.remove({}, function() {});
 
-    var userData = {
-      username: req.body.username,
-      email: req.body.email,
-      zipCode: req.body.zipCode,
-      password: req.body.password,
-      confirmPassword: req.body.confirmPassword
-    };
 
     // Validation
   	req.checkBody('username', 'Username is required').notEmpty();
@@ -51,16 +45,30 @@ module.exports = function(app) {
       res.render('home', { errors: errors });
       return;
     } else {
-      //create new user document using User model & userData
-      var newUser = new User(userData);
+      const saltRounds = 10;
 
-      //store newUser document into the db
-      newUser.save(function (err, newUser) {
-        if (err) {
-          return res.render('500', {error: err});
-        } else {
-          res.send('yay!');
-        }
+      bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+
+          var userData = {
+            username: req.body.username,
+            email: req.body.email,
+            zipCode: req.body.zipCode,
+            password: hash
+          };
+
+          //create new user document using User model & userData
+          var newUser = new User(userData);
+
+          //store newUser document into the db
+          newUser.save(function (err, newUser) {
+            if (err) {
+              return res.render('500', {error: err});
+            } else {
+              res.send('yay!');
+            }
+          });
+        });
       });
     };
   });
