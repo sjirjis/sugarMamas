@@ -1,6 +1,6 @@
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
-const User = require('../models/User.js');
+const User = require('../models/UserModel.js');
 
 module.exports = function(app) {
 
