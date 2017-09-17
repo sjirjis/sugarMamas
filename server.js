@@ -4,9 +4,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
+
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+
 const mongoose = require('mongoose');
 const dbConfig = require('./config/dbConfig');
 
@@ -16,8 +18,9 @@ const app = express();
 //init mongodb
 mongoose.connect(dbConfig.URL);
 
-//get routes
+//get routes & controllers
 require('./routes/routes.js')(app);
+require('./controllers/usersController.js')(app);
 
 //kill header for privacy
 app.disable('x-powered-by');
@@ -36,9 +39,9 @@ app.use(express.static(__dirname + '/public'));
 
 // Express Session
 app.use(session({
-  secret: 'secret',
-  saveUninitialized: true,
-  resave: true
+  secret: 'Y7N./%@r="CPxMa/d!5Y',
+  resave: false,
+  saveUninitialized: false,
 }));
 
 // Passport init

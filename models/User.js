@@ -5,7 +5,8 @@ const saltRounds = 13;
 var userSchema = new mongoose.Schema({
   email: {
     type: String,
-    unique: true,
+    index:  true,
+    unique:  true,
     required: true,
     trim: true
   },
@@ -37,4 +38,20 @@ userSchema.pre('save', function(next) {
 });
 
 var User = mongoose.model('User', userSchema);
+
+// userSchema.methods.comparePassword = function(plainTextPassword, callback) {
+//   bcrypt.compare(plainTextPassword, this.password, function(err, isMatch) {
+//     if (err) return callback(err);
+//     callback(undefined, isMatch);
+//   });
+// };
+
+// userSchema.methods.loginRegistrant = function(email) {
+  // User.findOne({'email': this.email}, 'email', function(err, dbEmail) {
+  //   if (err) return err;
+  //   console.log(dbEmail);
+  //   console.log(this.email);
+  // });
+// };
+
 module.exports = User;
