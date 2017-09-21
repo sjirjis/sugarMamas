@@ -1,10 +1,12 @@
+const passport = require('passport');
+
 module.exports = function(app) {
   app.get('/', function(req, res) {
     res.render('user');
   });
 
   app.get('/dashboard', function(req, res) {
-    res.render('dashboard');
+    res.render('dashboard', {user: req.user});
   });
 
   //@todo breaks references to  assets

@@ -1,72 +1,58 @@
-const expressValidator = require('express-validator');
-const bodyParser = require('body-parser');
-const User = require('../models/UserModel.js');
+const express = require('express');
+const router = express.Router();
 
-module.exports = function(app) {
+const passport = require('passport');
 
-  //bodyparsing
-  app.use(bodyParser.json());
-  app.use(require('body-parser').urlencoded({
-    extended: false
-  }));
+const User = require('../models/UserModel');
 
-  //init validator
-  app.use(expressValidator());
+router.get('/', function(req, res) {
+  res.render('user');
+});
 
-  app.post('/login', function(req, res) {
-    req.checkBody('email', 'Email is required').notEmpty();
-    req.checkBody('email', 'Email is not valid').isEmail();
-    req.checkBody('password', 'Password is required').notEmpty();
-
-    var loginErrors = req.validationErrors();
-    if (loginErrors) {
-      res.render('user', {
-        loginErrors: loginErrors
-      });
-      return;
-    } //else {
-
+router.get('/register', function(req, res) {
+  emailExists = req.flash('emailExists');
+  res.render('user', {
+    email_exists: emailExists
   });
+});
 
-  app.post('/register', function(req, res) {
-    //for development only @todo remove for production
-    //User.remove({}, function() {});
-
-    // Validation
-    //req.checkBody looks and name attr of Input element
-    req.checkBody('email', 'Email is required').notEmpty();
-    req.checkBody('email', 'Email is not valid').isEmail();
-    req.checkBody('zipCode', 'Zip Code is required').notEmpty();
-    req.checkBody('password', 'Password is required').notEmpty();
-    req.checkBody('confirmPassword', 'Passwords do not match').equals(req.body.password);
-
-    var registrationErrors = req.validationErrors();
-    if (registrationErrors) {
-      res.render('user', {
-        registrationErrors: registrationErrors
-      });
-      return;
-    } else {
-
-      var userData = {
-        email: req.body.email,
-        zipCode: req.body.zipCode,
-        password: req.body.password
-      };
-
-      //create new user document using User model & userData
-      var newUser = new User(userData);
-
-      //store newUser document into the db
-      newUser.save(function(err, newUser) {
-        if (err) {
-          return res.render('500', {
-            error: err
-          });
-        } else {
-          res.redirect('/dashboard');
-        }
-      });
-    };
+router.get('/login', function(req, res) {
+  loginError = req.flash('noEmail');
+  passwordError = req.flash('incorrectPassword');
+  res.render('user', {
+    login_error: loginError,
+    password_error: passwordError
   });
+});
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+router.post('/register', passport.authenticate('local.signup', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/register',
+  failureFlash: true
+}));
+
+router.post('/login', passport.authenticate('local.login', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
+router.get('/dashboard', isLoggedIn, function(req, res) {
+  console.log(req.user);
+  res.render('dashboard', {user: req.user});
+});
+
+
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/login');
 };
+
+module.exports = router;

@@ -2,28 +2,21 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const exphbs = require('express-handlebars');
-const flash = require('connect-flash');
-
+const bodyParser = require('body-parser');
 const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-
 const mongoose = require('mongoose');
-const dbConfig = require('./config/dbConfig');
+const passport = require('passport');
+const MongoStore = require('connect-mongo')(session);
+const flash = require('express-flash');
 
 //init app
 const app = express();
 
 //init mongodb
-mongoose.connect(dbConfig.URL);
+mongoose.connect('mongodb://localhost/SugarMamas');
 
-//get routes & controllers
-require('./routes/routes.js')(app);
-require('./controllers/UserController.js')(app);
-
-//kill header for privacy
-app.disable('x-powered-by');
+const user = require('./controllers/UserController');
+require('./config/passport.js');
 
 //view engine
 const handlebars = require('express-handlebars').create({
@@ -32,45 +25,30 @@ const handlebars = require('express-handlebars').create({
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 //static/public folder
 app.use(express.static(__dirname + '/public'));
 
+//cookie parser
+app.use(cookieParser());
+
 // Express Session
 app.use(session({
   secret: 'Y7N./%@r="CPxMa/d!5Y',
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
 }));
+
+app.use(flash());
 
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Connect Flash
-app.use(flash());
-
-// Global Vars
-app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
-  next();
-});
-
-// app.use(function(req, res) {
-//   res.type('text/html');
-//   res.status(404);
-//   res.render('404');
-// });
-//
-// app.use(function(err, req, res, next) {
-//   console.error(err.stack);
-//   res.status(500);
-//   res.render('500');
-// });
+app.use(user);
 
 //server connection
 const PORT = 4000;

@@ -5,7 +5,7 @@
 body {
   font-family: 'Titillium Web', sans-serif;
   overflow-y: scroll;
-  background: url(../images/sugarimg.jpg) no-repeat center center fixed; 
+  background: url(../images/sugarimg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -241,6 +241,7 @@ textarea {
 
 footer {
   padding: 15px;
+  margin-top: 50px;
   clear: both;
   color: #ffffff;
   font-size: 14px;
@@ -283,7 +284,7 @@ footer img {
   .smIcons {
     display: none;
   }
-}  
+}
 
 @media screen and (min-width: 641px) {
   .centerIcons {

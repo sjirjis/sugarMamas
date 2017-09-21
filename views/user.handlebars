@@ -23,13 +23,23 @@
                 </div>
               {{/each}}
             {{/if}}
+
+            {{#if email_exists}}
+              <div class="alert alert-danger alert-register">
+                <strong>{{email_exists}}</strong>
+              </div>
+            {{/if}}
             <!-- end reg errors, start login -->
-            {{#if loginErrors}}
-              {{#each loginErrors}}
-                <div class="alert alert-danger login-register">
-                  <strong>{{msg}}</strong>
-                </div>
-              {{/each}}
+            {{#if login_error}}
+              <div class="alert alert-danger alert-login">
+                <strong>{{login_error}}</strong>
+              </div>
+            {{/if}}
+
+            {{#if password_error}}
+              <div class="alert alert-danger alert-login">
+                <strong>{{password_error}}</strong>
+              </div>
             {{/if}}
             <!-- end errors -->
             <form id="login-form" action="/login" method="post" role="form" style="display: block;">

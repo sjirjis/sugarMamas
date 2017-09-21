@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 const saltRounds = 13;
 
-var userSchema = new mongoose.Schema({
+var userSchema = mongoose.Schema({
   email: {
     type: String,
     index:  true,
@@ -19,39 +19,19 @@ var userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  lastUpdateDate: {
+    type: Date,
+    default: Date.now
   }
 });
 
-userSchema.pre('save', function(next) {
-  var user = this;
+userSchema.methods.encryptPassword = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(saltRounds), null);
+};
 
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    if (err) return next(err);
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
-    bcrypt.hash(user.password, salt, function(err, hash) {
-      if (err) return next(err);
-
-      user.password = hash;
-      next();
-    });
-  });
-});
-
-var User = mongoose.model('User', userSchema);
-
-// userSchema.methods.comparePassword = function(plainTextPassword, callback) {
-//   bcrypt.compare(plainTextPassword, this.password, function(err, isMatch) {
-//     if (err) return callback(err);
-//     callback(undefined, isMatch);
-//   });
-// };
-
-// userSchema.methods.loginRegistrant = function(email) {
-  // User.findOne({'email': this.email}, 'email', function(err, dbEmail) {
-  //   if (err) return err;
-  //   console.log(dbEmail);
-  //   console.log(this.email);
-  // });
-// };
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
