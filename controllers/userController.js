@@ -43,7 +43,6 @@ router.post('/login', passport.authenticate('local.login', {
 }));
 
 router.get('/dashboard', isLoggedIn, function(req, res) {
-  console.log(req.user);
   res.render('dashboard', {user: req.user});
 });
 
