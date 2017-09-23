@@ -1,9 +1,12 @@
+<a href="/logout"><h1>Logout</h1></a>
+
+
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
+  <div class="col-sm-8 col-sm-offset-2">
     <div class="panel panel-login formStyle">
       <div class="panel-heading formStyle">
         <div class="row">
-          <a class="active">Search Your Food</a>
+          <a class="active"><h3>Search Your Food</h3></a>
         </div>
         <hr>
       </div>
@@ -13,24 +16,108 @@
             <div class="form-group">
               <input type="text" name="food" id="food" tabindex="1" class="form-control formStyle" placeholder="Type in your food here" value="" required="">
             </div>
+            <div class="progress" id="getFoodProgress" style="display: none">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                90%
+              </div>
+            </div>
             <div id="resultsBox">
             </div>
-            <div class="col-lg-12">
-              <input type="submit" name="search" id="search" tabindex="2" class="form-control formStyle btn btn-register" value="Search">
+            <!-- <div class="col-sm-6 col-sm-offset-3"> -->
+            <input type="submit" name="search" id="search" tabindex="2" class="form-control formStyle btn btn-register" value="Search">
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modalHeadContentLeft">
+              <h4 id='modalTitle'>Nutrition Facts</h4>
+              <button id="saveFavBtn" type="button" class="btn btn-lg btn-default">
+                <span id="saveHeart" class="glyphicon glyphicon-heart" aria-hidden="true"></span> Save
+              </button>
             </div>
+          </div>
+          <div class="modal-body">
+
+            <div class="divTable">
+
+              <div class="divTableHeading text-center">
+
+                <div class="divTableFoodItem">
+                  <h3>Egg, whole, raw</h3>
+                </div>
+
+                <div class="divTableServingSize">
+                  <h4>1 jumbo (63g)</h4>
+                </div>
+
+              </div>
+
+              <div class="tableTitles">
+                <div class="tableDataTitle text-right"><strong>%DV</strong></div>
+                <div class="tableGraphTitle text-center"><strong>Macro Nutrient Breakdown</strong></div>
+              </div>
+
+              <div class="divTableBody">
+                <div class="divTableData">
+
+                  <div class="nutrients">
+                    <p class="col1 caloriesRow">Calories</p>
+                    <p class="col1 macroNutrient">Total Fat</p>
+                    <p class="col1 subNutrient">Saturated Fat</p>
+                    <p class="col1">Cholesterol</p>
+                    <p class="col1 macroNutrient">Total Carbs</p>
+                    <p class="col1 subNutrient">Fiber</p>
+                    <p class="col1 subNutrient">Sugars</p>
+                    <p class="col1 macroNutrient">Protein</p>
+                  </div>
+
+                  <div class="gramMeasure">
+                    <p class="col2 caloriesRow">90</p>
+                    <p class="col2">6.0g</p>
+                    <p class="col2 subNutrient">2.0g</p>
+                    <p class="col2">234mg</p>
+                    <p class="col2">0.5g</p>
+                    <p class="col2 subNutrient">0.0g</p>
+                    <p class="col2 subNutrient">0.2g</p>
+                    <p class="col2">7.9g</p>
+                  </div>
+
+                  <div class="percentMeasure">
+                    <p class="col3 caloriesRow">5%</p>
+                    <p class="col3">9%</p>
+                    <p class="col3 subNutrient">10%</p>
+                    <p class="col3">78%</p>
+                    <p class="col3">0%</p>
+                    <p class="col3 subNutrient">0%</p>
+                    <p class="col3 subNutrient">~</p>
+                    <p class="col3">16%</p>
+                  </div>
+                </div>
+
+                <div class="divTableGraph">
+                  <canvas id="myChart"></canvas>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-<h3>Welcome to the dashboard {{user.email}}</h3>
-
-<a href="/logout">Logout</a>

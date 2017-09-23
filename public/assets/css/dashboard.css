@@ -1,0 +1,142 @@
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid green;
+    border-bottom: 16px solid green;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;
+    margin-left: 42.5%;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#saveHeart {
+  color: red;
+}
+
+#saveFavBtn {
+  float: right;
+  margin-right: 15px;
+}
+
+#modalTitle {
+  float: left;
+}
+
+.glyphicon.glyphicon-heart {
+    font-size: 20px;
+}
+
+.divTable {
+  background-color: #fff;
+}
+
+.divTableFoodItem {
+  margin-top: 0px;
+}
+
+.divTableServingSize {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.34);
+    margin-bottom: 10px;
+    padding-top: 1px;
+}
+
+.divTableData {
+  display: flex;
+  justify-content: center;
+  margin:20px;
+}
+
+
+.col2, .col3 {
+  padding-left: 35px;
+}
+
+.percentMeasure, .gramMeasure, .nutrients {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.34);
+}
+
+.percentMeasure{
+  padding-right: 5px;
+}
+
+.caloriesRow,  .macroNutrient {
+  font-weight: bold;
+}
+
+.subNutrient {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.col1.subNutrient {
+  margin-left: 8px;
+}
+
+.col1 {
+  text-align: left;
+}
+
+ .col2, .col3 {
+   text-align: right;
+ }
+
+.divTableRow { display: table-row; }
+.divTableCell { display: table-cell;}
+
+@media (min-width: 768px) {
+  .divTableServingSize {
+      border-bottom: solid 1px rgba(0, 0, 0, 0.34);
+      margin-bottom: 10px;
+      padding-top: 1px;
+  }
+
+  .tableDataTitle, .tableGraphTitle {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .tableDataTitle {
+    margin-left: -23px;
+  }
+
+  .tableGraphTitle {
+    margin-left: 10px;
+  }
+
+  .divTableBody {
+    display: flex;
+    padding-top: 8px;
+  }
+
+  .divTableData {
+    display: flex;
+    flex: 1;
+    margin: 5px 0px 0px;
+  }
+
+  .percentMeasure {
+    border-right: solid 1px rgba(0, 0, 0, 0.34);
+  }
+
+  .percentMeasure, .gramMeasure, .nutrients {
+    border-bottom: none;
+    flex: 1;
+  }
+
+  .col1.subNutrient {
+    margin-right: -8px;
+  }
+
+  .col2 {
+    margin-left: 8px;
+  }
+
+  .divTableGraph {
+    flex: 1;
+  }
+}
