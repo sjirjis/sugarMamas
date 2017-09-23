@@ -1,4 +1,4 @@
-$("#myModal").modal();
+$("#myModal").modal('hide');
 
 $('#food').keypress(function(e) {
   if (e.which == 13) {
@@ -29,13 +29,32 @@ $("#search").on("click", function() {
       }
 
       $('#resultsBox').on('click', '.well', function() {
-        console.log('test');
+        var thisDataField = data.hits[$(this).attr("id").split("-")[1]].fields;
+        var
+          calories = thisDataField.nf_calories,                caloriesDv = Math.ceil(calories / 2000 * 100),
+          totFatGrams = thisDataField.nf_total_fat,            totFatDv = Math.ceil(totFatGrams / 65 * 100),
+          satFatGrams = thisDataField.nf_saturated_fat,        satFatDv = Math.ceil(satFatGrams / 20) * 100,
+          cholesterolMgrams = thisDataField.nf_cholesterol,    cholesterolDv = Math.ceil(cholesterolMgrams / 300 * 100),
+          totCarbsGrams = thisDataField.nf_total_carbohydrate, totCarbsDv = Math.ceil(totCarbsGrams / 300 * 100),
+          fiberGrams = thisDataField.nf_dietary_fiber,         fiberDv = Math.ceil(fiberGrams / 25 * 100),
+          sugarsGrams = thisDataField.nf_sugars,               sugarsDv = Math.ceil(sugarsGrams / 25 * 100),
+          proteinGrams = thisDataField.nf_protein,             proteinDv = Math.ceil(proteinGrams / 50 * 100)
+
+          $('#calories').html(calories);                          $('#caloriesDv').html(caloriesDv + '%');
+          $('#totFatGrams').html(totFatGrams + 'g');              $('#totFatDv').html(totFatDv + '%');
+          $('#satFatGrams').html(satFatGrams + 'g');              $('#satFatDv').html(satFatDv + '%');
+          $('#cholesterolMgrams').html(cholesterolMgrams + 'g');  $('#cholesterolDv').html(cholesterolDv + '%');
+          $('#totCarbsGrams').html(totCarbsGrams + 'g');          $('#totCarbsDv').html(totCarbsDv + '%');
+          $('#fiberGrams').html(fiberGrams + 'g');                $('#fiberDv').html(fiberDv + '%');
+          $('#sugarsGrams').html(sugarsGrams + 'g');              $('#sugarsDv').html(sugarsDv + '%');
+          $('#proteinGrams').html(proteinGrams + 'g');            $('#proteinDv').html(proteinDv + '%');
+
+          console.log(thisDataField);
+
       });
 
     });
 });
-
-var fatData = 65;
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
@@ -44,7 +63,7 @@ var chart = new Chart(ctx, {
   // The data for our dataset
   data: {
     labels: [
-      "Fat " + fatData + '%', "Carbs " + fatData + '%', "Protein " + fatData + '%'
+      "Fat " +  + '%', "Carbs " +  + '%', "Protein " +  + '%'
     ],
     datasets: [{
       //label: "Macro Nutrient Breakdown",
