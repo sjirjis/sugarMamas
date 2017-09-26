@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
   $("#myModal").modal('hide');
-  $('svg, #checkmarkText, #crossText').hide();
 
   $('#food').keypress(function(e) {
     if (e.which === 13) {
@@ -44,7 +43,7 @@ $(document).ready(function() {
 
         //clear resultsBox
         $('#resultsBox').empty();
-        $('#resultsBox').off();
+        $('#resultsBox').off(); //release data from previous call so not to interfere with next call
 
         //build resultsBox wells
         for (var i = 0; i < data.hits.length; i++) {
@@ -124,9 +123,11 @@ $(document).ready(function() {
 
           // 5:1 fiber ratio rule
           if ((totCarbsGrams / fiberGrams) <= 5) {
-            $('#checkmark, #checkmarkText').show();
+            $('.pass').show();
+            $('.fail').hide();
           } else {
-            $('#cross, #crossText').show();
+            $('.fail').show();
+            $('.pass').hide();
           }
 
           //prep data for chart
