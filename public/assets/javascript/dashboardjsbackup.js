@@ -33,18 +33,16 @@ $(document).ready(function() {
       .done(function(data) {
         $('#getFoodProgress').hide();
 
-        //handle no api results
-        if (data.hits.length == 0) {
-          $('#resultsBox').empty();
-          $('#resultsBox').off(); //release data from previous call so not to interfere with next call
-          $("#errorModalBody").html('<p>No results. Try searching something else.</p>');
-          $("#errorModal").modal('show');
-          return;
-        }
+        // //handle no api results
+        // if (data.hits.length == 0) {
+        //   $('#resultsBox').empty();
+        //   $(".modal-body").html('<p>No results. Try searching something else.</p>');
+        //   $("#errorModal").modal('show');
+        //   return;
+        // }
 
         //clear resultsBox
         $('#resultsBox').empty();
-        $('#resultsBox').off();
 
         //build resultsBox wells
         for (var i = 0; i < data.hits.length; i++) {
@@ -54,12 +52,14 @@ $(document).ready(function() {
           $("#resultsBox").append(well);
         }
 
-        $('#resultsBox').on('click', '.well', function() {
+        console.log('above resultsBox:', data);
+
+        $('#resultsBox').on('click', '.well', data, function() {
+
+        console.log('inside resultsBox:', data);
 
           //get data for clicked-on well to display in modal
           var thisDataField = data.hits[$(this).attr("id").split("-")[1]].fields;
-
-          console.log(thisDataField);
           var
             divTableFoodItem = thisDataField.item_name,
 
