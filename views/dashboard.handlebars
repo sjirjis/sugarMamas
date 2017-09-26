@@ -14,18 +14,16 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="form-group">
-              <input type="text" name="food" id="food" tabindex="1" class="form-control formStyle" placeholder="Type in your food here" value="" required="">
+              <input type="text" name="food" id="food" tabindex="1" class="form-control formStyle" placeholder="Type in your food here" value="" required="" autofocus="autofocus">
             </div>
             <div class="progress" id="getFoodProgress" style="display: none">
               <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%">
                 90%
               </div>
             </div>
+            <input type="text" name="search" id="search" tabindex="2" class="form-control formStyle btn btn-register" value="Search">
             <div id="resultsBox">
             </div>
-            <!-- <div class="col-sm-6 col-sm-offset-3"> -->
-            <input type="submit" name="search" id="search" tabindex="2" class="form-control formStyle btn btn-register" value="Search">
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -53,25 +51,22 @@
 
               <div class="divTableHeading text-center">
 
-                <div class="divTableFoodItem">
+                <div id="divTableFoodItem">
                   <h3>Egg, whole, raw</h3>
                 </div>
 
-                <div class="divTableServingSize">
+                <div id="divTableServingSize">
                   <h4>1 jumbo (63g)</h4>
                 </div>
 
               </div>
 
-              <div class="tableTitles">
-                <div class="tableDataTitle text-right"><strong>%DV</strong></div>
-                <div class="tableGraphTitle text-center"><strong>Macro Nutrient Breakdown</strong></div>
-              </div>
-
               <div class="divTableBody">
+
                 <div class="divTableData">
 
                   <div class="nutrients">
+                    <p class="col1 holdingSpace">&nbsp;</p>
                     <p class="col1 caloriesRow">Calories</p>
                     <p class="col1 macroNutrient">Total Fat</p>
                     <p class="col1 subNutrient">Saturated Fat</p>
@@ -83,6 +78,7 @@
                   </div>
 
                   <div class="gramMeasure">
+                    <p class="col2 holdingSpace">&nbsp;</p>
                     <p class="col2 caloriesRow" id="calories">0</p>
                     <p class="col2" id="totFatGrams">g</p>
                     <p class="col2 subNutrient" id="satFatGrams">g</p>
@@ -94,6 +90,7 @@
                   </div>
 
                   <div class="percentMeasure">
+                    <p class="col3 tableDataTitle"><strong>%DV</strong></p>
                     <p class="col3 caloriesRow" id="caloriesDv">%</p>
                     <p class="col3" id="totFatDv">%</p>
                     <p class="col3 subNutrient" id="satFatDv">%</p>
@@ -105,18 +102,86 @@
                   </div>
                 </div>
 
-                <div class="divTableGraph">
-                  <canvas id="myChart"></canvas>
-                </div>
+                <div class="macroSection">
 
+                  <div class="divTableGraph">
+                    <p class="tableGraphTitle text-center"><strong>Macro Nutrient Caloric Breakdown</strong></p>
+                    <p class="tableGraphBody text-center">% of calories from macro nutrient</p>
+                    <div id="chart-legends"></div>
+                    <canvas id="myChart"></canvas>
+                  </div>
+
+                  <div class="sugarDV">
+                  </div>
+
+                </div>
               </div>
             </div>
+
+            <div class="row">
+              <div class="fiveToOneContainer text-center">
+
+                <div class="fiveToOneText">
+                  <h4>Dr. Greger's 5:1 Fiber Ratio Rule</h4>
+                  <p>The sugar to fiber ratio ideally is a 1:1, but that's a real stretch for even some of the health nuts out there.</p>
+                  <p>Dr. Greger's rule of thumb is the foods you consume should have a carbohydrate to fiber ratio that is 5 to 1. A ratio of 5 to 1 or less optimally supports health and reduces the risk of chronic diseases.</p>
+                </div>
+
+                <div class="fiveToOneAnimation">
+                  <h4>Pass or Fail...</h4>
+
+
+                  <svg id="checkmark" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                    <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                    <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                  </svg>
+                  <h4 id="checkmarkText">Pass!</h4>
+
+                  <svg id="cross" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                    <circle class="path circle" fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                    <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+                    <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+                  </svg>
+                  <h4 id="crossText">Fail!</h4>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="fiberNeedsContainer">
+                <div class="">
+
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div class="modal-footer">
             <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- error Modal -->
+<div id="errorModal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Oops! Something is up...</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Please enter a food in the search box</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
