@@ -15,14 +15,15 @@ $(document).ready(function() {
     var foodItem = $("#food").val().trim();
     var nxParams = foodItem + "?results=0:10&fields=*&appId=84a9f6f9&appKey=48136d097a467ec20665eaa96a5f6f06"
 
-    //check for empty search
-    if (foodItem.length <= 1) {
-      $("#errorModal").modal('show');
-      return;
-    }
+    // //check for empty search string
+    // if (foodItem.length == 0) {
+    //   $('.modal-body').html('<p>Please enter a food in the search box.</p>')
+    //   $("#errorModal").modal('show');
+    //   return;
+    // }
 
+    //display progress bar at static 90%
     $('#getFoodProgress').show();
-    console.log(foodItem);
 
     // nutritionix
     var nxQuery = "https://api.nutritionix.com/v1_1/search/" + nxParams;
@@ -30,8 +31,18 @@ $(document).ready(function() {
     $.get(nxQuery, function(data, status) {})
       .done(function(data) {
         $('#getFoodProgress').hide();
+
+        //handle no api results
+        if (data.hits.length == 0) {
+          $(".modal-body").html('<p>No results. Try searching something else.</p>');
+          $("#errorModal").modal('show');
+          return;
+        }
+
+        //clear resultsBox
         $("#resultsBox").html("");
 
+        //build resultBox wells
         for (var i = 0; i < data.hits.length; i++) {
           var fields = data.hits[i].fields;
           var well = '<div class="well" id="foodWell-' + i + '" data-toggle="modal" data-target="#myModal">' +
@@ -39,10 +50,12 @@ $(document).ready(function() {
           $("#resultsBox").append(well);
         }
 
-        $('#resultsBox').on('click', '.well', function() {
-          //get the
-          var thisDataField = data.hits[$(this).attr("id").split("-")[1]].fields;
-          console.log(data);
+        console.log('above resultsBox:', data);
+
+        $('#resultsBox').on('click', '.well', data, function(event) {
+          console.log('inside resultsBox:', event.data);
+          //get data for clicked-on well to display in modal
+          var thisDataField = event.data.hits[$(this).attr("id").split("-")[1]].fields;
           var
             divTableFoodItem = thisDataField.item_name,
 
@@ -102,7 +115,7 @@ $(document).ready(function() {
 
           //sugar guilt
           if (sugarsGrams > 8 || sugarsDv > 33) {
-            $('.sugarDV').html('This food alone put you at <strong>' + sugarsDv + '</strong>% of your daily sugar allowance!');
+            $('.sugarDV').html('This food alone puts you at <strong>' + sugarsDv + '%</strong> of your daily sugar allowance!');
           }
 
           // 5:1 fiber ratio rule
@@ -112,13 +125,17 @@ $(document).ready(function() {
             $('#cross, #crossText').show();
           }
 
-          console.log(thisDataField);
-
           //prep data for chart
           percentCalFromFat = Math.round(totFatCalories / calories * 100),
-            percentCalFromCarbs = Math.round(totCarbCalories / calories * 100),
-            percentCalFromProtein = Math.round(proteinCalories / calories * 100);
+          percentCalFromCarbs = Math.round(totCarbCalories / calories * 100),
+          percentCalFromProtein = Math.round(proteinCalories / calories * 100);
 
+          //clear current chart first - this was causing errors when searching multiple items
+          //and rendering multiple charts
+          $('#myChart').remove();
+          $('.chartParentDiv').append('<canvas id="myChart"><canvas>')
+
+          //now that prev chat is removed, rebuild
           var ctx = document.getElementById('myChart').getContext('2d');
           var chart = new Chart(ctx, {
             // The type of chart we want to create
@@ -139,9 +156,12 @@ $(document).ready(function() {
             },
 
             // Configuration options go here
-            options: {}
-          });
+            options: {
+              responsive: true
+            }
+          });//end Chart
         });
       });
   });
+
 });
