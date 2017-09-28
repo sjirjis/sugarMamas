@@ -104,7 +104,6 @@ macro section
   margin-right: 15px;
   padding-top: 15px;
   border-top: solid 1px rgba(0, 0, 0, 0.34);
-  display: flex;
 }
 
 .fiveToOneText, .fiveToOneAnimation {
@@ -118,11 +117,6 @@ macro section
 /******************
 checkmark and cross
 *******************/
-/*svg {
-  width: 100px;
-  display: block;
-  margin: 40px auto 0;
-}*/
 
 .path {
   stroke-dasharray: 1000;
@@ -229,4 +223,12 @@ begin media queries
   .macroSection {
     flex: 1;
   }
+
+  /**************
+  5:1 fiber ratio
+  **************/
+
+  /*.fiveToOneContainer {
+    display: flex;
+  }*/
 }

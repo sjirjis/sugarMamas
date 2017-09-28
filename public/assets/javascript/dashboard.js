@@ -128,6 +128,17 @@ $(document).ready(function() {
           } else {
             $('.fail').show();
             $('.pass').hide();
+
+            var totFiberNeeded = totCarbsGrams / 5 ;
+            var addedFiberNeeded = Math.ceil(totFiberNeeded - fiberGrams);
+
+            //display markup of how much more fiber is needed to get withithe 5:1 ratio            
+            //simple grammer handling for plural fiber amounts
+            if (addedFiberNeeded == 1) {
+              $('.fiberNeeds').html('<p>You would need an additonal' + addedFiberNeeded + ' additional gram of fiber to get within the 5:1 ratio.')
+            } else {
+              $('.fiberNeeds').html('<p>You would need an additonal' + addedFiberNeeded + ' additional grams of fiber to get within the 5:1 ratio.')
+            }
           }
 
           //prep data for chart
