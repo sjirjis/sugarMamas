@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
+  <div class="col-sm-8 col-sm-offset-2">
     <div class="panel panel-login formStyle">
       <div class="panel-heading formStyle">
         <div class="row">
@@ -16,6 +16,11 @@
         <div class="row">
           <div class="col-lg-12">
             <!-- throw server-side validation errors -->
+            {{#if logoutMsg}}
+              <div class="alert alert-danger alert-register">
+                <strong>{{logoutMsg}}</strong>
+              </div>
+            {{/if}}
             {{#if registrationErrors}}
               {{#each registrationErrors}}
                 <div class="alert alert-danger alert-register">
@@ -47,7 +52,7 @@
                 <input type="email" name="email" id="loginEmail" tabindex="2" class="form-control formStyle" placeholder="Email Address" value="" required="">
               </div>
               <div class="form-group">
-                <input type="password" name="password" id="loginPassword" tabindex="2" class="form-control formStyle" placeholder="Password">
+                <input type="password" name="password" id="loginPassword" tabindex="2" class="form-control formStyle" placeholder="Password" required="">
               </div>
               <!-- <div class="form-group text-center">
                 <input type="checkbox" tabindex="3" class="" name="remember" id="remember">

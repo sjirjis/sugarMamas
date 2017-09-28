@@ -1,0 +1,67 @@
+
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+  overflow-y: scroll;
+  background: url(../images/sugarimg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+  color: #1ab188;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+a:hover {
+  color: #179b77;
+}
+
+.logo {
+  text-align: center;
+  padding: 20px;
+}
+
+.smIcons {
+  padding-top: 15px;
+}
+
+.sloganBox h1 {
+  color: white;
+  text-transform: capitalize;
+  font-weight: 400;
+  background-color: rgba(19, 35, 47, 0.9);
+  padding: 30px;
+  max-width: 600px;
+  margin: 30px auto;
+  border-radius: 4px;
+  font-style: italic;
+}
+
+footer {
+  padding: 15px;
+  margin-top: 50px;
+  clear: both;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600px;
+  text-align: center;
+  background: #1ab188;
+  opacity: .85;
+}
+
+footer img {
+  width: 78px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+/*@media (min-width: 768px) {
+  .container {
+       width: auto;;
+  }
+}*/

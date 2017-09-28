@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   $("#myModal").modal('hide');
+  $(".topOfSearch").hide();
 
   $('#food').keypress(function(e) {
     if (e.which === 13) {
@@ -52,6 +53,13 @@ $(document).ready(function() {
             '<h4><strong>#' + (i + 1) + '</strong> - ' + fields.brand_name + ' ' + fields.item_name + '</h4></div>';
           $("#resultsBox").append(well);
         }
+
+        //handle back to top button
+        var wellCount = document.getElementById('resultsBox').childNodes.length;
+        if (wellCount > 0) {
+          $(".topOfSearch").show();
+        }
+
 
         $('#resultsBox').on('click', '.well', function() {
 
@@ -132,7 +140,7 @@ $(document).ready(function() {
             var totFiberNeeded = totCarbsGrams / 5 ;
             var addedFiberNeeded = Math.ceil(totFiberNeeded - fiberGrams);
 
-            //display markup of how much more fiber is needed to get withithe 5:1 ratio            
+            //display markup of how much more fiber is needed to get withithe 5:1 ratio
             //simple grammer handling for plural fiber amounts
             if (addedFiberNeeded == 1) {
               $('.fiberNeeds').html('<p>You would need an additonal' + addedFiberNeeded + ' additional gram of fiber to get within the 5:1 ratio.')

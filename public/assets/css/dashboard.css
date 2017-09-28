@@ -110,13 +110,13 @@ macro section
   flex: 1;
 }
 
-#cross, #checkmark {
-  width: 175px;
-}
-
 /******************
 checkmark and cross
 *******************/
+
+#cross, #checkmark {
+  width: 175px;
+}
 
 .path {
   stroke-dasharray: 1000;
@@ -177,6 +177,10 @@ checkmark and cross
 end checkmark and cross
 ***********************/
 
+.search-footer-button {
+  margin: 5px 0px;
+}
+
 /******************
 begin media queries
 ******************/
@@ -223,12 +227,4 @@ begin media queries
   .macroSection {
     flex: 1;
   }
-
-  /**************
-  5:1 fiber ratio
-  **************/
-
-  /*.fiveToOneContainer {
-    display: flex;
-  }*/
 }
