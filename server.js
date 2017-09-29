@@ -52,7 +52,11 @@ app.use(user);
 
 //server connection
 const PORT = 4000;
-app.set('port', process.env.PORT || PORT);
-app.listen(app.get('port'), function() {
+// app.set('port', process.env.PORT || PORT);
+// app.listen(app.get('port'), function() {
+//   console.log('app is listening on port:', PORT);
+// });
+
+app.listen(process.env.PORT || 4000, function() {
   console.log('app is listening on port:', PORT);
 });
