@@ -1,17 +1,14 @@
 const express = require('express');
 const router = express.Router();
-
 const passport = require('passport');
-
 const User = require('../models/UserModel');
 
 router.get('/', function(req, res) {
-  req.flash('logout', 'You have been logged out');
   res.render('user');
 });
 
 router.get('/logout', function(req, res) {
-  req.flash('logout');
+  req.flash('logout', 'You have been logged out');
   res.redirect('/');
 })
 
