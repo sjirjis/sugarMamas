@@ -151,40 +151,68 @@ $(document).ready(function() {
           }
 
           //prep data for chart
-          var percentCalFromFat = Math.round(totFatCalories / calories * 100),
-            percentCalFromCarbs = Math.round(totCarbCalories / calories * 100),
-            percentCalFromProtein = Math.round(proteinCalories / calories * 100);
+          var chartData = {}
+            chartData.percentCalFromFat = Math.round(totFatCalories / calories * 100),
+            chartData.percentCalFromCarbs = Math.round(totCarbCalories / calories * 100),
+            chartData.percentCalFromProtein = Math.round(proteinCalories / calories * 100);
 
-          var ctx = document.getElementById('myChart').getContext('2d');
-          var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'pie',
-            // The data for our dataset
-            data: {
-              labels: [
-                percentCalFromFat + '% Fat',
-                percentCalFromCarbs + '% Carb',
-                percentCalFromProtein + '% Protein'
-              ],
-              datasets: [{
-                //label: "Macro Nutrient Breakdown",
-                backgroundColor: ['#10aeb2', '#ecf284', '#daa520'],
-                borderColor: 'rgb(255, 99, 132)',
-                data: [percentCalFromFat, percentCalFromCarbs, percentCalFromProtein],
-              }]
-            },
+          //generate the initial chart
+          genChart(chartData);
 
-            // Configuration options go here
-            options: {
-              responsive: true
-            }
-          }); //end Chart
+            //re-gen the chart based on window servingSizeQty
+            //listen for window resizing to re-gen chart
+            $(window).resize(function() {
+                genChartOnResize(chartData);
+            });
 
-          window.addEventListener('resize', function () {
-            chart.resize()
-          });
+        }); //end #resultsBox.on click
+      }); //end get().done()
+  }); //end #search.on click
 
-        });
-      });
-  });
+  function genChart(data){
+
+    $('#myChart').remove();
+    $('.chartParentDiv').append('<canvas id="myChart"></canvas>');
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'pie',
+      // The data for our dataset
+      data: {
+        labels: [
+          data.percentCalFromFat + '% Fat',
+          data.percentCalFromCarbs + '% Carb',
+          data.percentCalFromProtein + '% Protein'
+        ],
+        datasets: [{
+          //label: "Macro Nutrient Breakdown",
+          backgroundColor: ['#10aeb2', '#ecf284', '#daa520'],
+          borderColor: 'rgb(255, 99, 132)',
+          data: [data.percentCalFromFat, data.percentCalFromCarbs, data.percentCalFromProtein],
+        }]
+      },
+      // Configuration options go here
+      options: {
+        responsive: true
+      }
+    });
+  }; //end chart function
+
+  //this functiuon is to fix a defect in chart.js resizing
+  //when we cross from mobile L to Tablet size screen, the chart size gets out of whack
+  //so we look for when the cross of those windows sizes are, then re-gen the chart
+  var lastX = window.innerWidth
+  var lastY = window.innerHeight
+
+  function genChartOnResize(data) {
+     var x = window.innerWidth
+     var y = window.innerHeight
+     if (lastX <= 768 && 768 < x) {
+        genChart(data);
+     }
+     lastX = x
+     lastY = y
+  }
+
 });
