@@ -182,13 +182,19 @@ search footer
 ************/
 
 div.panel-footer {
-  overflow: hidden;
+  display: flex;
 }
 
 .search-footer-button {
-  margin: 5px;
-  width: 48%;
-  float: left;
+  flex: 1;
+}
+
+#logoutBtn {
+  margin-left: 5px;
+}
+
+.topOfSearch {
+  margin-right: 5px;
 }
 
 /******************
