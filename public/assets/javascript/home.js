@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $('#login-form-link').click(function(e) {
     $("#login-form").delay(100).fadeIn(100);
     $("#register-form").fadeOut(100);
@@ -19,7 +20,10 @@ $(document).ready(function() {
     e.preventDefault();
   });
 
-  if(window.location.href.indexOf('register') > -1) {
+  $(".alert-logout").delay(3000).fadeOut(1500);
+
+  if (window.location.href.indexOf('register') > -1) {
     $('#register-form-link').trigger('click');
   }
+
 });

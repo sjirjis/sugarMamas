@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   $("#myModal").modal('hide');
-  $(".topOfSearch").hide();
+  // $(".topOfSearch").hide();
 
   $('#food').keypress(function(e) {
     if (e.which === 13) {
@@ -137,7 +137,7 @@ $(document).ready(function() {
             $('.fail').show();
             $('.pass').hide();
 
-            var totFiberNeeded = totCarbsGrams / 5 ;
+            var totFiberNeeded = totCarbsGrams / 5;
             var addedFiberNeeded = Math.ceil(totFiberNeeded - fiberGrams);
 
             //display markup of how much more fiber is needed to get withithe 5:1 ratio

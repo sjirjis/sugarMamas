@@ -10,12 +10,12 @@ var userSchema = mongoose.Schema({
     required: true,
     trim: true
   },
-  zipCode: {
-    type: Number,
-    maxlength: 5,
-    required: true,
-    trim: true
-  },
+  // zipCode: {
+  //   type: Number,
+  //   maxlength: 5,
+  //   required: true,
+  //   trim: true
+  // },
   password: {
     type: String,
     required: true

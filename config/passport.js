@@ -29,7 +29,7 @@ passport.use('local.signup', new LocalStrategy({
 
     const newUser = new User();
     newUser.email = req.body.email;
-    newUser.zipCode = req.body.zipCode;
+    // newUser.zipCode = req.body.zipCode;
     newUser.password = newUser.encryptPassword(req.body.password);
 
     newUser.save(function(err) {

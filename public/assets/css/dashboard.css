@@ -177,8 +177,18 @@ checkmark and cross
 end checkmark and cross
 ***********************/
 
+/************
+search footer
+************/
+
+div.panel-footer {
+  overflow: hidden;
+}
+
 .search-footer-button {
-  margin: 5px 0px;
+  margin: 5px;
+  width: 48%;
+  float: left;
 }
 
 /******************

@@ -6,8 +6,14 @@ const passport = require('passport');
 const User = require('../models/UserModel');
 
 router.get('/', function(req, res) {
+  req.flash('logout', 'You have been logged out');
   res.render('user');
 });
+
+router.get('/logout', function(req, res) {
+  req.flash('logout');
+  res.redirect('/');
+})
 
 router.get('/register', function(req, res) {
   emailExists = req.flash('emailExists');
