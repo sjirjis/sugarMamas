@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
+  console.log('dashboard.js loaded');
+
   $("#myModal").modal('hide');
-  // $(".topOfSearch").hide();
 
   $('#food').keypress(function(e) {
     if (e.which === 13) {
@@ -178,6 +179,11 @@ $(document).ready(function() {
               responsive: true
             }
           }); //end Chart
+
+          window.addEventListener('resize', function () {
+            chart.resize()
+          });
+
         });
       });
   });
