@@ -52,6 +52,9 @@ footer {
   text-align: center;
   background: #1ab188;
   opacity: .85;
+  width: 100%;
+  position: absolute;
+  left: 0;
 }
 
 footer img {
