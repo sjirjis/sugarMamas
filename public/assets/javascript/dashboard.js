@@ -144,9 +144,9 @@ $(document).ready(function() {
             //display markup of how much more fiber is needed to get withithe 5:1 ratio
             //simple grammer handling for plural fiber amounts
             if (addedFiberNeeded == 1) {
-              $('.fiberNeeds').html('<p>You would need an additonal ' + addedFiberNeeded + ' additional gram of fiber to get within the 5:1 ratio.')
+              $('.fiberNeeds').html('<p>You would need an additonal ' + addedFiberNeeded + ' gram of fiber to get within the 5:1 ratio.')
             } else {
-              $('.fiberNeeds').html('<p>You would need an additonal ' + addedFiberNeeded + ' additional grams of fiber to get within the 5:1 ratio.')
+              $('.fiberNeeds').html('<p>You would need an additonal ' + addedFiberNeeded + ' grams of fiber to get within the 5:1 ratio.')
             }
           }
 
