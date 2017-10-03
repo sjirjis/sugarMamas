@@ -13,7 +13,7 @@ const flash = require('express-flash');
 const app = express();
 
 //init mongodb
-mongoose.connect('mongodb://localhost/SugarMamas');
+mongoose.connect('mongodb://sjirjis:ix05HODPlYeSfoniMhCO@ds161304.mlab.com:61304/heroku_dgsj9wh3');
 
 const user = require('./controllers/UserController');
 require('./config/passport.js');
@@ -52,11 +52,7 @@ app.use(user);
 
 //server connection
 const PORT = 4000;
-// app.set('port', process.env.PORT || PORT);
-// app.listen(app.get('port'), function() {
-//   console.log('app is listening on port:', PORT);
-// });
-
-app.listen(process.env.PORT || 4000, function() {
+app.set('port', process.env.PORT || PORT);
+app.listen(app.get('port'), function() {
   console.log('app is listening on port:', PORT);
 });
