@@ -5,12 +5,12 @@ const User = require('../models/UserModel');
 const app = express();
 
 router.get('/', function(req, res) {
-  req.flash('logout', 'You have been logged out');
   console.log(req.baseUrl);
   res.render('user');
 });
 
 router.get('/logout', function(req, res) {
+  req.flash('logout', 'You have been logged out');
   console.log(req.baseUrl);
   res.redirect('/');
 })
