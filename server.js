@@ -13,7 +13,9 @@ const flash = require('express-flash');
 const app = express();
 
 //init mongodb
-mongoose.connect('mongodb://sjirjis:ix05HODPlYeSfoniMhCO@ds161304.mlab.com:61304/heroku_dgsj9wh3');
+mongoose.connect('mongodb://sjirjis:ix05HODPlYeSfoniMhCO@ds161304.mlab.com:61304/heroku_dgsj9wh3', {
+  useMongoClient: true
+});
 
 const user = require('./controllers/UserController');
 require('./config/passport.js');
