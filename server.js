@@ -17,7 +17,7 @@ mongoose.connect('mongodb://sjirjis:ix05HODPlYeSfoniMhCO@ds161304.mlab.com:61304
   useMongoClient: true
 });
 
-const user = require('./controllers/UserController');
+const user = require('./controllers/userController');
 require('./config/passport.js');
 
 //view engine
